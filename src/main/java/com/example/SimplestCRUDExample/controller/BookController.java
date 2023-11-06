@@ -3,6 +3,7 @@ package com.example.SimplestCRUDExample.controller;
 import com.example.SimplestCRUDExample.model.Book;
 import com.example.SimplestCRUDExample.repo.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,6 +46,7 @@ public class BookController {
     }
 
     @PostMapping("/addBook")
+    //@ResponseBody
     public ResponseEntity<Book> addBook(@RequestBody Book book) {
         try {
             Book bookObj = bookRepository.save(book);
@@ -82,6 +84,7 @@ public class BookController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    
     @DeleteMapping("/deleteAllBooks")
     public ResponseEntity<HttpStatus> deleteAllBooks() {
         try {
@@ -90,6 +93,17 @@ public class BookController {
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+    
+
+    //@RequestMapping(value="/devtestv1", method=RequestMethod.GET)
+    //@RequestMapping(value="/devtestv1", method = RequestMethod.GET)
+    @GetMapping(value="/devtestv1")
+    //@ResponseBody
+    //@SpringBootApplication
+    // @ComponentScan(basePackageClasses = BookController.class)
+    public String exampleMethod() {
+    return "test";
     }
 
 }
